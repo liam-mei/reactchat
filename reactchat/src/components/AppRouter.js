@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
@@ -8,6 +9,7 @@ import Room from "./Room";
 import socket from "../socket/socketConnection";
 
 export default function AppRouter() {
+  const [cookies, setCookie] = useCookies(['token'])
   return (
     <Switch>
       <Route path="/login">
