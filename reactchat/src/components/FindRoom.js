@@ -24,6 +24,7 @@ export default function FindRoom(props) {
     });
   }, []);
 
+  // reformat this so that it receives the event object instead of roomId
   const goToRoom = (roomId) => {
     return () => history.push(`/rooms/${roomId}`);
   };

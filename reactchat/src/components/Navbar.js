@@ -7,10 +7,7 @@ export default function Navbar2() {
   return (
     <>
       <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/register">Register</NavLink>
-        <NavLink to="/rooms">Find Chat Room</NavLink>
+        I'm not sticky!
       </div>
       <Navbar bg="light" expand="lg" sticky="top">
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -22,6 +19,7 @@ export default function Navbar2() {
             <NavLink className="navbar" to="/register">Register</NavLink>
             <NavLink className="navbar" to="/rooms">Find Chat Room</NavLink>
           </Nav>
+          <div>I'm sticky!!!</div>
         </Navbar.Collapse>
       </Navbar>
     </>
