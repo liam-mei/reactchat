@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
+import Login from "./Login";
 
 export default function Home() {
   return (
     <div>
       Home Component
+      <Login />
     </div>
-  )
+  );
 }
