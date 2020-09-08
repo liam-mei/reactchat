@@ -15,7 +15,7 @@ export default function Room(props) {
       console.log(currentMessages);
       setState({ ...state, currentMessages });
     });
-  }, [socket]);
+  }, [roomId]);
   return (
     <div>
       {state.currentMessages.map((message) => (
