@@ -3,11 +3,11 @@ import Navbar from "./components/Navbar";
 import AppRouter from "./components/AppRouter";
 import "./App.css";
 
-import socket from "./socket/socketConnection";
+// import socket from "./socket/socketConnection";
 
 function App() {
   return (
-    <div className='app'>
+    <div className="app">
       <Navbar />
       <AppRouter />
     </div>

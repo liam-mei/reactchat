@@ -3,9 +3,19 @@
   border: 1px solid purple;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.red {
+  border: 3px solid red;
+}
+.blue {
+  border: 3px solid blue;
+}
+
+.black {
+  border: 3px solid black;
+}
+
+.icon {
+  height: 25px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -36,9 +46,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.black {
-  border: 1px solid black;
-  background-color: black;
 }
