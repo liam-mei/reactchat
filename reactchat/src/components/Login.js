@@ -6,15 +6,19 @@ import { useHistory } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import Col from "react-bootstrap/Col";
+
+import messagingApp from "../pictures/messagingApp.png";
 
 export default function Login() {
   const history = useHistory();
 
   const [user, setUser] = useState({ username: "user1", password: "password" });
+  const [error, setError] = useState({ message: "" });
 
   const updateUser = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    setError({ message: "" });
   };
 
   const login = (e) => {
@@ -26,41 +30,62 @@ export default function Login() {
         window.localStorage.setItem("token", data.data.token);
         history.push("/rooms");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(err.response.data.err);
+        console.log(err);
+      });
   };
 
   return (
-    <Container className='red'>
-      <Row className='blue'>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            {/* <Form.Label>Email address</Form.Label> */}
-            <Form.Control
-              type="email"
-              name="username"
-              value={user.username}
-              onChange={updateUser}
-              placeholder="Username"
-            />
-            {/* <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text> */}
-          </Form.Group>
+    <Container className="mt-5 red">
+      <Row className="">
+        <Col xs={10} sm={6}>
+          <h3 className="py-4">Be together, whenever.</h3>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              {error.message && <div>{error.message}</div>}
+              <Form.Control
+                type="email"
+                name="username"
+                value={user.username}
+                onChange={updateUser}
+                placeholder="Username"
+                className="rounded-pill"
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            {/* <Form.Label>Password</Form.Label> */}
-            <Form.Control
-              type="password"
-              name="password"
-              value={user.password}
-              onChange={updateUser}
-              placeholder="Password"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit" onClick={login}>
-            Sign In
-          </Button>
-        </Form>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Control
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={updateUser}
+                placeholder="Password"
+                className="rounded-pill"
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Keep me signed in" />
+            </Form.Group>
+
+            <Button
+              variant="primary"
+              type="submit"
+              className="rounded-pill mb-3"
+              onClick={login}
+            >
+              Sign In
+            </Button>
+
+            <a className="p-3" onClick={() => history.push("/register")}>
+              or Register
+            </a>
+          </Form>
+          <a className="text-muted">Forgot your password?</a>
+        </Col>
+        <Col xs={10} sm={6} className="d-flex justify-content-center">
+          <img className="m-4" src={messagingApp} alt="messaging app" />
+        </Col>
       </Row>
     </Container>
   );
