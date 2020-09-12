@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import Col from "react-bootstrap/Col";
+
+import RightNav from "./RightNav";
+
 export default function Room(props) {
   const { socket } = props;
   const { roomId } = useParams();
   const [state, setState] = useState({
-    currentRoom: {},
     currentMessages: [],
+    showDetails: true,
   });
 
   useEffect(() => {
@@ -17,10 +21,18 @@ export default function Room(props) {
     });
   }, [roomId]);
   return (
-    <div>
-      {state.currentMessages.map((message) => (
-        <div key={message.id}>{message.message}</div>
-      ))}
+    <div className="right d-flex flex-column">
+      <RightNav room={props.room} />
+      <div>
+        {state.currentMessages.map((message) => (
+          <div key={message.id}>{message.message}</div>
+        ))}
+        {state.showDetails && (
+          <Col className=" details black d-none d-sm-block p-0 m-0" sm={2}>
+            <div>Room Details</div>
+          </Col>
+        )}
+      </div>
     </div>
   );
 }
