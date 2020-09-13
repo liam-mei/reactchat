@@ -1,6 +1,5 @@
-.app {
-  height: 2000px;
-  border: 1px solid purple;
+html, .app, body, #root {
+  height: 100%;
 }
 
 .red {
@@ -18,32 +17,112 @@
   height: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+  height: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav.transparent {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.register {
+  height: 1000px;
+}
+
+.register::after {
+  content: "";
+  background: url(./pictures/ipad.jpg);
+  background-size: cover;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.chat {
+  height: 100%;
+  /* border: 10px solid salmon; */
+}
+
+.left {
+  height: 100%;
+  width: 25%;
+  min-width: 15rem;
+  border-right: 2px solid lightgray;
+  /* border: 5px solid seagreen; */
+}
+
+
+.rooms {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.room {
+
+}
+
+.right {
+  width: 75%;
+  height: 100%;
+  /* border: 5px solid wheat */
+}
+
+.currentRoom {
+  height: 100%;
+  width: 100%;
+  /* border: 5px solid purple; */
+}
+
+.roomMain {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.messages {
+  overflow-y: scroll;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 1.5rem; */
+  flex-grow: 2;
+}
+
+.messageRight {
+  align-self: flex-end;
+  background-color: #0084ff;
+  padding: 0.4rem .9rem;
+  margin: .1rem .5rem;
+  border-radius: 25px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.messageLeft {
+  align-self: flex-start;
+  background-color: #f1f0f0;
+  padding: 0.4rem .9rem;
+  margin: .1rem .5rem;
+  border-radius: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.addMessage {
+  border: 1px solid purple;
+  height: 40px;
+}
+
+.details {
+  /* border: 5px solid black; */
+  border-left: 2px solid lightgray;
+  height: 100%;
+  width: 30%;
+}
+
+.innerDetails {
+  /* flex: 1; */
+  /* border: 1px solid black; */
 }

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Route, useHistory } from "react-router-dom";
 
 import socket from "../socket/socketConnection";
-import Navbar from "./Navbar";
+import Navbar from "./LeftNav";
 import Rooms from "./Rooms";
 import Room from "./Room";
 
-export default function Messages(props) {
+export default function Chat(props) {
   const history = useHistory();
   const [state, setState] = useState({
     rooms: [
@@ -25,11 +25,12 @@ export default function Messages(props) {
       setState({ rooms, currentRoom: rooms[0] });
       history.push(`/rooms/${rooms[0].id}`);
     });
+    
 
   }, []);
 
   return (
-    <div className="d-flex">
+    <div className="chat d-flex">
       <div className="left d-flex flex-column">
         <Navbar />
         <Rooms rooms={state.rooms} />

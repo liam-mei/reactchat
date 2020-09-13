@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./Home";
 import Register from "./Register";
-import Messages from "./Messages";
+import Chat from "./Chat";
 import ProtectedRoute from "../utils/ProtectedRoute";
 import getToken from "../utils/getToken";
 
@@ -17,7 +17,7 @@ export default function AppRouter(props) {
 
       <ProtectedRoute
         path="/rooms"
-        render={(props) => <Messages {...props} />}
+        render={(props) => <Chat {...props} />}
       />
 
       <Route path="/">

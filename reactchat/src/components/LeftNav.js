@@ -6,7 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import settingsIcon from "../pictures/settings.png";
 import darkFavicon from "../pictures/faviconDark.ico";
 
-export default function Navbar2() {
+export default function LeftNav() {
   const history = useHistory();
   const removeToken = () => {
     localStorage.removeItem("token");
@@ -15,15 +15,14 @@ export default function Navbar2() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" sticky="top" className='d-flex justify-content-start'>
+      <Navbar bg="light" expand="lg" sticky="top">
         <Navbar.Brand className="d-flex mr-auto">
           <img className="logo" src={darkFavicon} />
-          <div className="m-2 pl-3">Message Me</div>
+          <div className="m-2 pl-3 d-none d-md-block ">Chats</div>
         </Navbar.Brand>
         <NavDropdown
-          title={<img className="icon" src={settingsIcon} />}
+          title={<i className="fas fa-cog fa-2x"></i>}
           id="basic-nav-dropdown"
-          className=''
         >
           <NavDropdown.Item>Settings</NavDropdown.Item>
           <NavDropdown.Divider />

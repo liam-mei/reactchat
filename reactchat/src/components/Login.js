@@ -28,6 +28,7 @@ export default function Login() {
       .then((data) => {
         console.log(data);
         window.localStorage.setItem("token", data.data.token);
+        localStorage.setItem('username', data.data.user.username)
         history.push("/rooms");
       })
       .catch((err) => {
