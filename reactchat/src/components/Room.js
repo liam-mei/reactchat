@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import RightNav from "./RightNav";
-import RoomMessage from "./RoomMessage";
+import RoomMessages from "./RoomMessages";
 import RoomDetails from "./RoomDetails";
 import AddMessage from "./AddMessage";
 
@@ -22,15 +22,11 @@ export default function Room(props) {
 
   return (
     <div className="right d-flex flex-column">
-      <RightNav room={room} changeDetails={changeDetails} username={username}/>
+      <RightNav room={room} changeDetails={changeDetails} username={username} />
 
-      <div className="currentRoom d-flex">
+      <div className="currentRoom">
         <div className="roomMain">
-          <div className="messages">
-            {messages.map((message, i) => (
-              <RoomMessage key={i} message={message} username={username} />
-            ))}
-          </div>
+          <RoomMessages messages={messages} username={username} />
           <AddMessage sendMessage={sendMessage} />
         </div>
         {showDetails && <RoomDetails />}
