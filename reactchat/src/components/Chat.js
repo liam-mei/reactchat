@@ -8,6 +8,7 @@ import Room from "./Room";
 
 export default function Chat(props) {
   const username = localStorage.getItem("username");
+  const token = localStorage.getItem("token");
   const [currentRoom, setCurrentRoom] = useState({});
   const [messages, setMessages] = useState([
     { message: "fakeMessage1", User: { username: "fakeuser1" } },
@@ -16,7 +17,6 @@ export default function Chat(props) {
   useEffect(() => {
     socket.on("newMessage", (message) => {
       console.log({ newMessage: message });
-      console.log({currentMessages: messages.slice()})
       setMessages([...messages, message]);
     });
 
@@ -25,15 +25,17 @@ export default function Chat(props) {
       setMessages(currentMessages);
     });
     return () => {
-      socket.off('newMessage');
+      socket.off("newMessage");
     };
   }, [messages]);
 
   const sendMessage = (message) => {
+    // console.log({ currentRoom });
     socket.emit("sendMessage", {
       room_id: currentRoom.id,
       User: { username },
       message,
+      token,
     });
     console.log({ messages });
     setMessages([...messages, { message, User: { username } }]);
