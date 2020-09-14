@@ -19,7 +19,7 @@ export default function AddMessage(props) {
               className="addMessageButton"
               onClick={() => sendMessage(message)}
             >
-              Sign In
+              Send
             </Button>
       {/* <button className='addMessageButton' onClick={() => sendMessage(message)}>Send</button> */}
     </div>
