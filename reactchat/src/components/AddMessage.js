@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button'
 
 export default function AddMessage(props) {
   const { sendMessage } = props;
@@ -10,9 +11,17 @@ export default function AddMessage(props) {
   };
 
   return (
-    <div>
-      <input type="text" onChange={editMessage} value={message} />
-      <button onClick={() => sendMessage(message)}>Send</button>
+    <div className='addMessage'>
+      <input className='addMessageInput' type="text" onChange={editMessage} value={message} />
+      <Button
+              variant="primary"
+              type="submit"
+              className="addMessageButton"
+              onClick={() => sendMessage(message)}
+            >
+              Sign In
+            </Button>
+      {/* <button className='addMessageButton' onClick={() => sendMessage(message)}>Send</button> */}
     </div>
   );
 }
