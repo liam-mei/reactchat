@@ -14,7 +14,11 @@ export default function RightNav(props) {
         <Navbar.Brand className="d-flex mr-auto">
           {props.room.name}
         </Navbar.Brand>
-        <i className="fas fa-info-circle fa-2x" onClick={props.changeDetails}></i>
+        <div className="username">{props.username}</div>
+        <i
+          className="fas fa-info-circle fa-2x"
+          onClick={props.changeDetails}
+        ></i>
       </Navbar>
     </>
   );
