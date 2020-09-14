@@ -8,27 +8,12 @@ import Room from "./Room";
 
 export default function Chat(props) {
   const username = localStorage.getItem("username");
-  const history = useHistory();
-  const [rooms, setRooms] = useState([
-    { id: 1, name: "fakeRoom1" },
-    { id: 2, name: "fakeRoom2" },
-    { id: 3, name: "fakeRoom3" },
-  ]);
   const [currentRoom, setCurrentRoom] = useState({});
   const [messages, setMessages] = useState([
     { message: "fakeMessage1", User: { username: "fakeuser1" } },
   ]);
 
   useEffect(() => {
-    socket.emit("getRooms");
-
-    socket.on("rooms", (rooms) => {
-      console.log(rooms);
-      setRooms(rooms);
-      setCurrentRoom(rooms[0]);
-      history.push(`/rooms/${rooms[0].id}`);
-    });
-
     socket.on("newMessage", (message) => {
       console.log({ newMessage: message });
       console.log({currentMessages: messages.slice()})
@@ -58,7 +43,7 @@ export default function Chat(props) {
     <div className="chat d-flex">
       <div className="left d-flex flex-column">
         <Navbar />
-        <Rooms socket={socket} rooms={rooms} />
+        <Rooms socket={socket} setCurrentRoom={setCurrentRoom} />
       </div>
 
       <Route path="/rooms/:roomId">

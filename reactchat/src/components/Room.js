@@ -12,10 +12,6 @@ export default function Room(props) {
 
   const [showDetails, setShowDetails] = useState(true);
 
-  // const [messages, setMessages] = useState([
-  //   { message: "fakeMessage1", User: { username: "fakeuser1" } },
-  // ]);
-
   useEffect(() => {
     socket.emit("joinRoom", roomId);
   }, [roomId]);
