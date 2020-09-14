@@ -27,11 +27,14 @@ export default function Rooms(props) {
 
   const goToRoom = (e) => {
     history.push(`/rooms/${e.target.dataset.id}`);
+    console.log(e.target.dataset)
+    setCurrentRoom(JSON.parse(e.target.dataset.room));
+
   };
   return (
     <div className="rooms">
       {rooms.map((room, index) => (
-        <div key={index} data-id={room.id} onClick={goToRoom}>
+        <div key={index} data-id={room.id} data-room={JSON.stringify(room)} onClick={goToRoom}>
           {room.name}
         </div>
       ))}

@@ -22,7 +22,7 @@ export default function Room(props) {
 
   return (
     <div className="right d-flex flex-column">
-      <RightNav room={room} changeDetails={changeDetails} />
+      <RightNav room={room} changeDetails={changeDetails} username={username}/>
 
       <div className="currentRoom d-flex">
         <div className="roomMain">
