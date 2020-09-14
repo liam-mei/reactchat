@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+import socket from '../socket/socketConnection'
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import settingsIcon from "../pictures/settings.png";
@@ -11,6 +12,7 @@ export default function LeftNav() {
   const removeToken = () => {
     localStorage.removeItem("token");
     history.push("/");
+    socket.emit('logoff')
   };
 
   return (

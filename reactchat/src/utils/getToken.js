@@ -13,7 +13,7 @@ export default function () {
   const currentTime = Date.now() / 1000;
   const expireTime = decodedToken.exp;
   const isExpired = expireTime > currentTime ? false : true;
-  console.log({ decodedToken, isExpired, currentTime, expireTime });
+  console.log({ decodedToken });
 
   if (isExpired) {
     localStorage.removeItem("token");
