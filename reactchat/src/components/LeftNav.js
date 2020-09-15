@@ -1,18 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import socket from '../socket/socketConnection'
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import settingsIcon from "../pictures/settings.png";
 import darkFavicon from "../pictures/faviconDark.ico";
 
-export default function LeftNav() {
+export default function LeftNav(props) {
+  const { socket } = props;
   const history = useHistory();
   const removeToken = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     history.push("/");
-    socket.emit('logoff')
+    socket.emit("logOff");
   };
 
   return (

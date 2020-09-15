@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+// import socket from '../socket/socketConnection'
+import io from 'socket.io-client';
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -29,6 +31,7 @@ export default function Login() {
         console.log(data);
         window.localStorage.setItem("token", data.data.token);
         localStorage.setItem('username', data.data.user.username)
+        // const socket = io.connect("http://localhost:5000");
         history.push("/rooms");
       })
       .catch((err) => {

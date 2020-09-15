@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Route, useHistory } from "react-router-dom";
+// import io from "socket.io-client";
 
 import socket from "../socket/socketConnection";
-import Navbar from "./LeftNav";
+import LeftNav from "./LeftNav";
 import Rooms from "./Rooms";
 import Room from "./Room";
 
 export default function Chat(props) {
   const username = localStorage.getItem("username");
+  // const socket = io.connect("http://localhost:5000");
+  // const {socket} = props;
+
   const token = localStorage.getItem("token");
   const [currentRoom, setCurrentRoom] = useState({});
   const [messages, setMessages] = useState([
@@ -26,6 +30,7 @@ export default function Chat(props) {
     });
     return () => {
       socket.off("newMessage");
+      socket.off("currentMessages");
     };
   }, [messages]);
 
@@ -44,7 +49,7 @@ export default function Chat(props) {
   return (
     <div className="chat d-flex">
       <div className="left d-flex flex-column">
-        <Navbar />
+        <LeftNav socket={socket} />
         <Rooms socket={socket} setCurrentRoom={setCurrentRoom} />
       </div>
 

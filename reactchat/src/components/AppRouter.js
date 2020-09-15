@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Register from "./Register";
 import Chat from "./Chat";
@@ -7,7 +7,7 @@ import ProtectedRoute from "../utils/ProtectedRoute";
 import getToken from "../utils/getToken";
 
 export default function AppRouter(props) {
-  const hasToken = getToken();
+  getToken();
 
   return (
     <Switch>
@@ -15,10 +15,7 @@ export default function AppRouter(props) {
         <Register />
       </Route>
 
-      <ProtectedRoute
-        path="/rooms"
-        render={(props) => <Chat {...props} />}
-      />
+      <ProtectedRoute path="/rooms" render={(props) => <Chat {...props} />} />
 
       <Route path="/">
         <Home />

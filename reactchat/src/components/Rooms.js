@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function Rooms(props) {
   const history = useHistory();
-  const {socket, setCurrentRoom} = props;
+  const { socket, setCurrentRoom } = props;
 
   const [rooms, setRooms] = useState([
     { id: 1, name: "fakeRoom1" },
@@ -13,7 +13,6 @@ export default function Rooms(props) {
 
   useEffect(() => {
     socket.emit("getRooms");
-
     socket.on("rooms", (rooms) => {
       console.log(rooms);
       setRooms(rooms);
@@ -21,20 +20,23 @@ export default function Rooms(props) {
       history.push(`/rooms/${rooms[0].id}`);
     });
     return () => {
-      socket.off('rooms')
+      socket.off("rooms");
     };
-  }, [])
+  },[]);
 
   const goToRoom = (e) => {
     history.push(`/rooms/${e.target.dataset.id}`);
-    console.log(e.target.dataset)
     setCurrentRoom(JSON.parse(e.target.dataset.room));
-
   };
   return (
     <div className="rooms">
       {rooms.map((room, index) => (
-        <div key={index} data-id={room.id} data-room={JSON.stringify(room)} onClick={goToRoom}>
+        <div
+          key={index}
+          data-id={room.id}
+          data-room={JSON.stringify(room)}
+          onClick={goToRoom}
+        >
           {room.name}
         </div>
       ))}

@@ -35,3 +35,15 @@ Image by{" "}
       <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3012138">
         Pixabay
       </a>
+
+currently, socket connection is created when app is loaded before
+someone logs in. This is not optimal on a security standpoint, as you
+have a socket connection before you have a token. In addition, the
+socket connection is only created when app loads.  This poses a
+problem when the server disconnects the socket connection and you want
+to log in.  The app would then have no way to create a socket
+connection other than by refreshing app.
+
+We should move the socket creation to the login endpoint.  That way,
+we can have new sockets without having to reload app.  Also use
+context to store socket connection.
