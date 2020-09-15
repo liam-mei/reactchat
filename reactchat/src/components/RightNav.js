@@ -9,7 +9,7 @@ export default function RightNav(props) {
         bg="light"
         expand="lg"
         sticky="top"
-        className="d-flex justify-content-start"
+        className="d-flex justify-content-start rightNav"
       >
         <Navbar.Brand className="d-flex mr-auto">
           {props.room.name}

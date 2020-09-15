@@ -19,8 +19,8 @@ export default function LeftNav(props) {
     <>
       <Navbar bg="light" expand="lg" sticky="top">
         <Navbar.Brand className="d-flex mr-auto">
-          <img className="logo" src={darkFavicon} />
-          <div className="m-2 pl-3 d-none d-md-block ">Chats</div>
+          <img className="logo d-none d-md-block" src={darkFavicon} />
+          <div className="m-2 pl-3 d-none d-lg-block">Chats</div>
         </Navbar.Brand>
         <NavDropdown
           title={<i className="fas fa-cog fa-2x"></i>}
