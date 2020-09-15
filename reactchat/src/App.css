@@ -65,6 +65,15 @@ body,
 }
 
 .room {
+  height: 40px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 0 .5rem;
+  margin: .3rem;
+}
+
+.active {
+  background-color: lightgray;
 }
 
 .right {
@@ -87,7 +96,7 @@ body,
   display: flex;
   flex-direction: column;
   flex-grow: 2;
-  border: 5px solid teal;
+  /* border: 5px solid teal; */
 }
 
 .messages {

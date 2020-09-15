@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function Rooms(props) {
+  const {pathname} = useLocation();
+  console.log({pathname})
   const history = useHistory();
   const { socket, setCurrentRoom } = props;
 
@@ -22,7 +24,7 @@ export default function Rooms(props) {
     return () => {
       socket.off("rooms");
     };
-  },[socket]);
+  }, [socket]);
 
   const goToRoom = (e) => {
     history.push(`/rooms/${e.target.dataset.id}`);
@@ -36,6 +38,7 @@ export default function Rooms(props) {
           data-id={room.id}
           data-room={JSON.stringify(room)}
           onClick={goToRoom}
+          className={`room ${pathname === '/rooms/' + room.id && 'active'}`}
         >
           {room.name}
         </div>
