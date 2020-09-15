@@ -22,7 +22,7 @@ export default function Rooms(props) {
     return () => {
       socket.off("rooms");
     };
-  },[]);
+  },[socket]);
 
   const goToRoom = (e) => {
     history.push(`/rooms/${e.target.dataset.id}`);

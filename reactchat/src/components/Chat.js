@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Route, useHistory } from "react-router-dom";
-// import io from "socket.io-client";
+import React, { useState, useEffect, useContext } from "react";
+import { Route } from "react-router-dom";
+import { SocketContext } from "../contexts/SocketContext";
 
-import socket from "../socket/socketConnection";
 import LeftNav from "./LeftNav";
 import Rooms from "./Rooms";
 import Room from "./Room";
 
 export default function Chat(props) {
   const username = localStorage.getItem("username");
-  // const socket = io.connect("http://localhost:5000");
-  // const {socket} = props;
+  const { socket } = useContext(SocketContext);
 
   const token = localStorage.getItem("token");
   const [currentRoom, setCurrentRoom] = useState({});
@@ -32,10 +30,9 @@ export default function Chat(props) {
       socket.off("newMessage");
       socket.off("currentMessages");
     };
-  }, [messages]);
+  }, [messages, socket] );
 
   const sendMessage = (message) => {
-    // console.log({ currentRoom });
     socket.emit("sendMessage", {
       room_id: currentRoom.id,
       User: { username },
