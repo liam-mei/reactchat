@@ -77,7 +77,7 @@ body,
   /* border: 5px solid purple; */
   overflow-y: scroll;
   display: flex;
-  /* flex-grow: 2; */
+  flex-grow: 2;
   /* width: 90%; */
 }
 
@@ -87,7 +87,7 @@ body,
   display: flex;
   flex-direction: column;
   flex-grow: 2;
-  /* border: 5px solid teal; */
+  border: 5px solid teal;
 }
 
 .messages {
@@ -96,7 +96,7 @@ body,
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid lightgray;
-  flex-grow: 1;
+  flex-grow: 2;
   /* border: 10px solid red; */
 }
 

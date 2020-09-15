@@ -26,7 +26,7 @@ export default function Room(props) {
 
       <div className="currentRoom">
         <div className="roomMain">
-          <RoomMessages messages={messages} username={username} />
+          <RoomMessages socket={socket} messages={messages} username={username} />
           <AddMessage sendMessage={sendMessage} />
         </div>
         {showDetails && <RoomDetails />}

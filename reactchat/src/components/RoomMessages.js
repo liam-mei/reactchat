@@ -1,14 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import RoomMessage from "./RoomMessage";
-// import ScrollToBottom from 'react-scroll-to-bottom';
 
 export default function RoomMessages(props) {
   const el = useRef(null);
-  const { messages, username } = props;
+  const { messages, username, socket } = props;
 
   useEffect(() => {
     el.current.scrollIntoView({ block: "end", behavior: "smooth" });
-  });
+  }, [messages]);
 
   return (
     <div className="messages">
