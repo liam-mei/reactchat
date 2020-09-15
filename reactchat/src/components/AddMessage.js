@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
 export default function AddMessage(props) {
   const { sendMessage } = props;
@@ -10,17 +10,29 @@ export default function AddMessage(props) {
     setMessage(e.target.value);
   };
 
+  const submitMessage = () => {
+    if (message) {
+      sendMessage(message);
+      setMessage("");
+    }
+  };
+
   return (
-    <div className='addMessage'>
-      <input className='addMessageInput' type="text" onChange={editMessage} value={message} />
+    <div className="addMessage">
+      <textarea
+        className="addMessageInput"
+        type="text"
+        onChange={editMessage}
+        value={message}
+      />
       <Button
-              variant="primary"
-              type="submit"
-              className="addMessageButton"
-              onClick={() => sendMessage(message)}
-            >
-              Send
-            </Button>
+        variant="primary"
+        type="submit"
+        className="addMessageButton"
+        onClick={submitMessage}
+      >
+        Send
+      </Button>
     </div>
   );
 }
