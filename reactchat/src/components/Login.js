@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import socket from '../socket/socketConnection'
-import io from 'socket.io-client';
+
+// Context Stuff
+import { SocketContext } from "../contexts/SocketContext";
+import io from "socket.io-client";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -14,6 +16,8 @@ import messagingApp from "../pictures/messagingApp.png";
 
 export default function Login() {
   const history = useHistory();
+  // context stuff
+  const { setSocket } = useContext(SocketContext);
 
   const [user, setUser] = useState({ username: "user1", password: "password" });
   const [error, setError] = useState({ message: "" });
@@ -30,13 +34,17 @@ export default function Login() {
       .then((data) => {
         console.log(data);
         window.localStorage.setItem("token", data.data.token);
-        localStorage.setItem('username', data.data.user.username)
-        // const socket = io.connect("http://localhost:5000");
+        localStorage.setItem("username", data.data.user.username);
+        setSocket(io.connect("http://localhost:5000"));
         history.push("/rooms");
       })
       .catch((err) => {
-        setError(err.response.data.err);
-        console.log(err);
+        if (err.response) {
+          setError(err.response.data.err);
+          console.log(err);
+        } else {
+          console.log("node server might not be up?");
+        }
       });
   };
 
