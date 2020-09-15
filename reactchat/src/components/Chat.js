@@ -30,7 +30,7 @@ export default function Chat(props) {
       socket.off("newMessage");
       socket.off("currentMessages");
     };
-  }, [messages, socket] );
+  }, [messages, socket]);
 
   const sendMessage = (message) => {
     socket.emit("sendMessage", {
@@ -45,11 +45,12 @@ export default function Chat(props) {
 
   return (
     <div className="chat d-flex">
-      <div className="left d-flex flex-column">
-        <LeftNav socket={socket} />
-        <Rooms socket={socket} setCurrentRoom={setCurrentRoom} />
-      </div>
-
+      <Route path='/rooms'>
+        <div className="left d-flex flex-column">
+          <LeftNav socket={socket} />
+          <Rooms socket={socket} setCurrentRoom={setCurrentRoom} />
+        </div>
+      </Route>
       <Route path="/rooms/:roomId">
         <Room
           socket={socket}

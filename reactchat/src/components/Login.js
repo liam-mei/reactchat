@@ -49,7 +49,7 @@ export default function Login() {
   };
 
   return (
-    <Container className="mt-5 red">
+    <Container className="mt-5">
       <Row className="">
         <Col xs={10} sm={6}>
           <h3 className="py-4">Be together, whenever.</h3>
