@@ -19,9 +19,11 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      const newSocket = io.connect("http://localhost:5000");
+      const newSocket = io.connect("http://localhost:5000", {
+        query: { token },
+      });
       setSocket(newSocket);
-      history.push('/rooms')
+      history.push("/rooms");
     }
   }, []);
 

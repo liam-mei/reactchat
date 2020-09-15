@@ -3,7 +3,6 @@ import { useHistory, useLocation } from "react-router-dom";
 
 export default function Rooms(props) {
   const {pathname} = useLocation();
-  console.log({pathname})
   const history = useHistory();
   const { socket, setCurrentRoom } = props;
 
