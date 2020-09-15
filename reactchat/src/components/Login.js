@@ -16,7 +16,6 @@ import messagingApp from "../pictures/messagingApp.png";
 
 export default function Login() {
   const history = useHistory();
-  // context stuff
   const { setSocket } = useContext(SocketContext);
 
   const [user, setUser] = useState({ username: "user1", password: "password" });
@@ -35,8 +34,13 @@ export default function Login() {
         console.log(data);
         window.localStorage.setItem("token", data.data.token);
         localStorage.setItem("username", data.data.user.username);
-        setSocket(io.connect("http://localhost:5000"));
+        setSocket(
+          io.connect("http://localhost:5000", {
+            query: { token: data.data.token },
+          })
+        );
         history.push("/rooms");
+        console.log(data.data.token);
       })
       .catch((err) => {
         if (err.response) {
