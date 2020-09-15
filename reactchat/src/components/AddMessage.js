@@ -21,7 +21,6 @@ export default function AddMessage(props) {
             >
               Send
             </Button>
-      {/* <button className='addMessageButton' onClick={() => sendMessage(message)}>Send</button> */}
     </div>
   );
 }

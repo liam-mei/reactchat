@@ -4,10 +4,8 @@ import Home from "./Home";
 import Register from "./Register";
 import Chat from "./Chat";
 import ProtectedRoute from "../utils/ProtectedRoute";
-import getToken from "../utils/getToken";
 
 export default function AppRouter(props) {
-  getToken();
 
   return (
     <Switch>
