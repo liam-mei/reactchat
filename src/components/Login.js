@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import secrets from '../../secrets'
+import secrets from '../secrets'
 
 // Context Stuff
 import { SocketContext } from "../contexts/SocketContext";

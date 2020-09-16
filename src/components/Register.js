@@ -10,7 +10,7 @@ import Col from "react-bootstrap/Col";
 
 import HomeNav from "./HomeNav";
 import Home from "./Home";
-import secrets from '../../secrets'
+import secrets from '../secrets'
 
 export default function Register() {
   const history = useHistory();

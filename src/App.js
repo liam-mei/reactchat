@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
-import secrets from '../secrets'
+import secrets from './secrets'
 import "./App.css";
 
 import getToken from "./utils/getToken";

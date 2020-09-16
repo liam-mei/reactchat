@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import secrets from "../../secrets";
+import secrets from "../secrets";
 
 let socket = io.connect(secrets.backendURL);
 
