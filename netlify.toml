@@ -2,7 +2,6 @@
 # unless otherwise overridden by more specific contexts.
 
 [build]
-  command = “CI= npm run build”
   # Directory to change to before starting a build.
   # This is where we will look for package.json/.nvmrc/etc.
   base = ""
@@ -12,8 +11,10 @@
   # been specified, include it in the publish directory path.
   publish = "build/"
 
+  command = “CI= npm run build”
+  
   # Default build command.
-  command = "npm run-script build"
+  # command = "npm run-script build"
 
 # The following redirect is intended for use with most SPAs that handle
 # routing internally.
