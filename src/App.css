@@ -136,9 +136,8 @@ body,
   padding: 0.4rem 0.9rem;
   margin: 0.1rem 0.5rem;
   border-radius: 25px;
-  overflow-wrap: break-word;
-  max-width: 75%;
-  min-width: 30%;
+  max-width: 60%;
+  word-break: break-all;
 }
 
 .addMessage {
