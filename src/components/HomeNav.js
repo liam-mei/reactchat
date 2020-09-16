@@ -9,7 +9,7 @@ import D from "../pictures/favicon.ico";
 export default function HomeNav() {
   return (
     <>
-      <div className="bg-light">Join the Family!!!</div>
+      <h4 className="bg-light center"> </h4>
       <Navbar className='px-lg-5' bg="light" variant="light" sticky="top">
         <Navbar.Brand className="mr-auto">
           <img alt="logo" className="logo" src={D} />

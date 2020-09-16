@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import HomeNav from "./HomeNav";
-import secrets from '../secrets'
+import secrets from "../secrets";
 
 export default function Register() {
   const history = useHistory();
@@ -37,9 +37,9 @@ export default function Register() {
   };
 
   return (
-    <div className="register">
+    <div>
       <HomeNav />
-      <Container>
+      <Container className="register">
         <Row className="">
           <Col xs={12} sm={6}>
             <h3 className="py-4">Simple. Reliable. Secure.</h3>

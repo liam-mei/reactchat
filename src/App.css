@@ -30,7 +30,11 @@ body,
 }
 
 .register {
-  height: 1000px;
+  display: flex;
+  flex-grow: 2;
+  /* border: 1px solid red; */
+  flex-direction: column;
+  margin-top: 2rem;
 }
 
 .register::after {
@@ -179,4 +183,10 @@ body,
 }
 .username {
   margin: 1rem;
+}
+
+.center {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
