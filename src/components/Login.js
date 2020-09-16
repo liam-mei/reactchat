@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-import secrets from '../secrets'
+import { useHistory, Link } from "react-router-dom";
+import secrets from "../secrets";
 
 // Context Stuff
 import { SocketContext } from "../contexts/SocketContext";
@@ -94,11 +94,11 @@ export default function Login() {
               Sign In
             </Button>
 
-            <a className="p-3" onClick={() => history.push("/register")}>
+            <Link className="p-3" to="/register">
               or Register
-            </a>
+            </Link>
           </Form>
-          <a className="text-muted">Forgot your password?</a>
+          <Link to='/' className="text-muted">Forgot your password?</Link>
         </Col>
         <Col xs={10} sm={6} className="d-flex justify-content-center">
           <img className="m-4" src={messagingApp} alt="messaging app" />

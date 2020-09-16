@@ -9,7 +9,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import HomeNav from "./HomeNav";
-import Home from "./Home";
 import secrets from '../secrets'
 
 export default function Register() {

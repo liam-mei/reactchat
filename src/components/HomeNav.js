@@ -12,7 +12,7 @@ export default function HomeNav() {
       <div className="bg-light">Join the Family!!!</div>
       <Navbar className='px-lg-5' bg="light" variant="light" sticky="top">
         <Navbar.Brand className="mr-auto">
-          <img className="logo" src={D} />
+          <img alt="logo" className="logo" src={D} />
         </Navbar.Brand>
         <Nav>
           <Link className="p-2" to="/rooms">
