@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 export default function AddMessage(props) {
   const { sendMessage } = props;
 
-  const [message, setMessage] = useState("fake message");
+  const [message, setMessage] = useState("");
 
   const editMessage = (e) => {
     setMessage(e.target.value);

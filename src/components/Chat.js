@@ -13,7 +13,7 @@ export default function Chat(props) {
   const token = localStorage.getItem("token");
   const [currentRoom, setCurrentRoom] = useState({});
   const [messages, setMessages] = useState([
-    { message: "fakeMessage1", User: { username: "fakeuser1" } },
+    { message: "", User: { username: "" } },
   ]);
 
   useEffect(() => {
