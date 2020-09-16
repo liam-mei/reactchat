@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 
 import HomeNav from "./HomeNav";
 import Home from "./Home";
+import secrets from '../../secrets'
 
 export default function Register() {
   const history = useHistory();
@@ -25,7 +26,7 @@ export default function Register() {
   const register = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/users/register", user)
+      .post(`${secrets.backendURL}/users/register`, user)
       .then((data) => {
         window.localStorage.setItem("token", data.data.token);
         history.push("/rooms");

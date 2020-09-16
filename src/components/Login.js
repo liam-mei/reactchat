@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import secrets from '../../secrets'
 
 // Context Stuff
 import { SocketContext } from "../contexts/SocketContext";
@@ -29,13 +30,13 @@ export default function Login() {
   const login = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/users/login", user)
+      .post(`${secrets.backendURL}/users/login`, user)
       .then((data) => {
         console.log(data);
         window.localStorage.setItem("token", data.data.token);
         localStorage.setItem("username", data.data.user.username);
         setSocket(
-          io.connect("http://localhost:5000", {
+          io.connect(secrets.backendURL, {
             query: { token: data.data.token },
           })
         );

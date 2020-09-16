@@ -1,9 +1,10 @@
 import axios from "axios";
 import getToken from "./getToken";
+import secrets from '../../secrets'
 
 export default function () {
   return axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: secrets.backendURL,
     headers: {
       Authorization: getToken(),
     },

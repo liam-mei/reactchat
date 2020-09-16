@@ -1,6 +1,7 @@
 import io from "socket.io-client";
+import secrets from "../../secrets";
 
-let socket = io.connect("http://localhost:5000");
+let socket = io.connect(secrets.backendURL);
 
 // socket.emit("clientTopSocketTest", "I work");
 
