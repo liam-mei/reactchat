@@ -10,8 +10,14 @@ export default function AddMessage(props) {
     setMessage(e.target.value);
   };
 
+  // const handleKeyPress = (e) => {
+  //   if (e.key === "Enter" && !e.shiftKey) {
+  //     submitMessage();
+  //   }
+  // };
+
   const submitMessage = () => {
-    if (message) {
+    if (message.length > 2) {
       sendMessage(message);
       setMessage("");
     }
@@ -24,6 +30,7 @@ export default function AddMessage(props) {
         type="text"
         onChange={editMessage}
         value={message}
+        // onKeyPress={handleKeyPress}
       />
       <Button
         variant="primary"
