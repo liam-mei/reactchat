@@ -44,7 +44,7 @@ export default function Login() {
         console.log(data.data.token);
       })
       .catch((err) => {
-        if (err.response) {
+        if (err.response.data.err) {
           setError(err.response.data.err);
           console.log(err);
         } else {
