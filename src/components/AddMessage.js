@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 export default function AddMessage(props) {
-  const { sendMessage } = props;
+  const { sendMessage, roomId } = props;
 
   const [message, setMessage] = useState("");
 
@@ -18,13 +18,15 @@ export default function AddMessage(props) {
 
   const submitMessage = () => {
     if (message.length > 2) {
-      sendMessage(message);
+      sendMessage(message, roomId);
       setMessage("");
     }
   };
 
   return (
+    // change this to a form component
     <div className="addMessage">
+      {/* CHANGE THIS INPUT TO SOMETHING ELSE? SO IT'S BIGGER BUT NOT TEXT AREA */}
       <textarea
         className="addMessageInput"
         type="text"
