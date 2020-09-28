@@ -10,55 +10,83 @@ export default function Chat(props) {
   const username = localStorage.getItem("username");
   const { socket } = useContext(SocketContext);
 
-  const token = localStorage.getItem("token");
-  const [currentRoom, setCurrentRoom] = useState({});
-  const [messages, setMessages] = useState([
-    { message: "", User: { username: "" } },
-  ]);
+  const [order, setOrder] = useState(-1);
+  const [rooms, setRooms] = useState({
+    r1: {
+      id: 1,
+      name: "testRoom1",
+      users: [{}],
+      messages: [{ message: "testMessage", user: { username: "user2" } }],
+      order: 0,
+    },
+  });
 
   useEffect(() => {
-    socket.on("newMessage", (message) => {
-      console.log({ newMessage: message });
-      setMessages([...messages, message]);
+    socket.on("userRooms", (rooms) => {
+      console.log({ rooms });
+      setRooms(rooms);
     });
 
-    socket.on("currentMessages", (currentMessages) => {
-      console.log({ joinRoomMessages: currentMessages });
-      setMessages(currentMessages);
+    socket.on("newMessage", (newMessage) => {
+      // newMessage should have 2 properties, room and message
+      console.log({ newMessage });
+      setOrder(order - 1);
+      setRooms({
+        ...rooms,
+        [newMessage.room]: {
+          ...rooms[newMessage.room],
+          messages: [...rooms[newMessage.room].messages, newMessage.message],
+          order,
+        },
+      });
+    });
+
+    socket.on("currentRoom", (currentRoom) => {
+      // order does not need to change when selecting room.  Only when messages update
+      // setOrder(order - 1);
+      // currentRoom.order = order;
+      // console.log({ currentRoom });
+      setRooms({ ...rooms, ["r" + currentRoom.id]: currentRoom });
     });
     return () => {
       socket.off("newMessage");
-      socket.off("currentMessages");
+      socket.off("currentRoom");
+      socket.off("rooms");
     };
-  }, [messages, socket]);
+  }, [order, rooms, socket]);
 
-  const sendMessage = (message) => {
-    socket.emit("sendMessage", {
-      room_id: currentRoom.id,
-      User: { username },
+  const sendMessage = (message, id) => {
+    setOrder(order - 1);
+    const currentRoom = rooms["r" + id];
+    currentRoom.order = order;
+    const newMessage = {
       message,
-      token,
+      user: { username },
+      roomId: id,
+      users: currentRoom.users,
+    };
+
+    setRooms({
+      ...rooms,
+      ["r" + id]: {
+        ...currentRoom,
+        order,
+        messages: [...currentRoom.messages, newMessage],
+      },
     });
-    console.log({ messages });
-    setMessages([...messages, { message, User: { username } }]);
+    socket.emit("sendMessage", newMessage);
   };
 
   return (
     <div className="chat d-flex">
-      <Route path='/rooms'>
+      <Route path="/rooms">
         <div className="left d-flex flex-column">
           <LeftNav socket={socket} />
-          <Rooms socket={socket} setCurrentRoom={setCurrentRoom} />
+          <Rooms rooms={rooms} username={username} />
         </div>
       </Route>
       <Route path="/rooms/:roomId">
-        <Room
-          socket={socket}
-          room={currentRoom}
-          username={username}
-          messages={messages}
-          sendMessage={sendMessage}
-        />
+        <Room socket={socket} rooms={rooms} sendMessage={sendMessage} />
       </Route>
     </div>
   );
