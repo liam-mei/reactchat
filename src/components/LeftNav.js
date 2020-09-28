@@ -11,15 +11,19 @@ export default function LeftNav(props) {
   const removeToken = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    history.push("/");
     socket.emit("logOff");
+    history.push("/");
   };
 
   return (
     <>
       <Navbar bg="light" expand="lg" sticky="top">
         <Navbar.Brand className="d-flex mr-auto">
-          <img alt='logo' className="logo d-none d-md-block" src={darkFavicon} />
+          <img
+            alt="logo"
+            className="logo d-none d-md-block"
+            src={darkFavicon}
+          />
           <div className="m-2 pl-3 d-none d-lg-block">Chats</div>
         </Navbar.Brand>
         <NavDropdown
