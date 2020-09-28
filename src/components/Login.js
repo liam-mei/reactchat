@@ -7,7 +7,7 @@ import secrets from "../secrets";
 
 // Context Stuff
 import { SocketContext } from "../contexts/SocketContext";
-import io from "socket.io-client";
+import socketCreator from "../socket/socketCreator";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -19,7 +19,7 @@ export default function Login() {
   const history = useHistory();
   const { setSocket } = useContext(SocketContext);
 
-  const [user, setUser] = useState({ username: "user1", password: "password" });
+  const [user, setUser] = useState({ username: "user2", password: "password" });
   const [error, setError] = useState({ message: "" });
 
   const updateUser = (e) => {
@@ -29,22 +29,21 @@ export default function Login() {
 
   const login = (e) => {
     e.preventDefault();
+    console.log({ user });
     axios
       .post(`${secrets.backendURL}/users/login`, user)
       .then((data) => {
-        console.log(data);
+        console.log("login data: ", data);
         window.localStorage.setItem("token", data.data.token);
         localStorage.setItem("username", data.data.user.username);
-        setSocket(
-          io.connect(secrets.backendURL, {
-            query: { token: data.data.token },
-          })
-        );
+        const socket = socketCreator(data.data.token);
+        setSocket(socket);
         history.push("/rooms");
-        console.log(data.data.token);
       })
       .catch((err) => {
-        if (err.response.data.err) {
+        // double check error handling
+        // if (err.response.data.err) {
+        if (err) {
           setError(err.response.data.err);
           console.log(err);
         } else {
@@ -98,7 +97,9 @@ export default function Login() {
               or Register
             </Link>
           </Form>
-          <Link to='/' className="text-muted">Forgot your password?</Link>
+          <Link to="/" className="text-muted">
+            Forgot your password?
+          </Link>
         </Col>
         <Col xs={10} sm={6} className="d-flex justify-content-center">
           <img className="m-4" src={messagingApp} alt="messaging app" />
