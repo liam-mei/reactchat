@@ -7,14 +7,16 @@ import RoomDetails from "./RoomDetails";
 import AddMessage from "./AddMessage";
 
 export default function Room(props) {
-  const { socket, username, room, messages, sendMessage } = props;
+  const { socket, rooms, sendMessage } = props;
   const { roomId } = useParams();
+  const username = localStorage.getItem("username");
 
   const [showDetails, setShowDetails] = useState(true);
 
   useEffect(() => {
-    socket.emit("joinRoom", roomId);
-  }, [roomId]);
+    socket.emit("getRoom", roomId);
+    console.log("getting room");
+  }, [socket, roomId]);
 
   const changeDetails = () => {
     setShowDetails(!showDetails);
@@ -22,14 +24,21 @@ export default function Room(props) {
 
   return (
     <div className="right d-flex flex-column">
-      <RightNav room={room} changeDetails={changeDetails} username={username} />
+      <RightNav
+        room={rooms["r" + roomId] || {name: ''}}
+        username={username}
+        changeDetails={changeDetails}
+      />
 
       <div className="currentRoom">
         <div className="roomMain">
-          <RoomMessages socket={socket} messages={messages} username={username} />
-          <AddMessage sendMessage={sendMessage} />
+          <RoomMessages
+            messages={rooms['r' + roomId] ? rooms["r" + roomId].messages : [{name: 'adsf', user: {username:''}}]}
+            username={username}
+          />
+          <AddMessage sendMessage={sendMessage} roomId={roomId} />
         </div>
-        {showDetails && <RoomDetails />}
+        {showDetails && <RoomDetails room={rooms[roomId]} />}
       </div>
     </div>
   );
