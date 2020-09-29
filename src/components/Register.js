@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -76,9 +76,9 @@ export default function Register() {
               >
                 Register
               </Button>
-              <a className="p-3" onClick={() => history.push("/login")}>
+              <Link to="/" className="p-3">
                 or Sign In
-              </a>
+              </Link>
             </Form>
           </Col>
         </Row>
