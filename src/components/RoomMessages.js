@@ -3,7 +3,7 @@ import RoomMessage from "./RoomMessage";
 
 export default function RoomMessages(props) {
   const el = useRef(null);
-  const { messages, username, socket } = props;
+  const { messages, username } = props;
 
   useEffect(() => {
     el.current.scrollIntoView({ block: "end", behavior: "smooth" });
