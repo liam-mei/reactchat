@@ -1,45 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 
 export default function Rooms(props) {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const history = useHistory();
-  const { socket, setCurrentRoom } = props;
-
-  const [rooms, setRooms] = useState([
-    { id: 1, name: "fakeRoom1" },
-    { id: 2, name: "fakeRoom2" },
-    { id: 3, name: "fakeRoom3" },
-  ]);
-
-  useEffect(() => {
-    socket.emit("getRooms");
-    socket.on("rooms", (rooms) => {
-      console.log(rooms);
-      setRooms(rooms);
-      setCurrentRoom(rooms[0]);
-      history.push(`/rooms/${rooms[0].id}`);
-    });
-    return () => {
-      socket.off("rooms");
-    };
-  }, [socket]);
+  const { rooms } = props;
 
   const goToRoom = (e) => {
     history.push(`/rooms/${e.target.dataset.id}`);
-    setCurrentRoom(JSON.parse(e.target.dataset.room));
   };
   return (
     <div className="rooms">
-      {rooms.map((room, index) => (
+      {Object.keys(rooms).map((key) => (
         <div
-          key={index}
-          data-id={room.id}
-          data-room={JSON.stringify(room)}
+          style={{order: rooms[key].order}}
+          key={rooms[key].id}
+          data-id={rooms[key].id}
           onClick={goToRoom}
-          className={`room ${pathname === '/rooms/' + room.id && 'active'}`}
+          className={`room ${
+            pathname === "/rooms/" + rooms[key].id && "active"
+          }`}
         >
-          {room.name}
+          {rooms[key].name}
         </div>
       ))}
     </div>

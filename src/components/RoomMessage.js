@@ -3,12 +3,14 @@ import React from "react";
 export default function RoomMessage(props) {
 
   const { message, username } = props;
-  const { User } = message;
+  const { user } = message;
+
+  // console.log({props})
 
   return (
     <div
       className={`${
-        username === User.username ? "messageRight" : "messageLeft"
+        username === user.username ? "messageRight" : "messageLeft"
       }`}
     >
       {message.message}
