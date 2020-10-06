@@ -5,7 +5,7 @@ experiment to test out react with socket.io and regular http connections.
 1. Move socket listeners to Chat.js - done
 2. change state to a kinda ordered obj of rooms - done?
 3. Create Rooms
-4. Search for Rooms
+4. Search for Rooms - later?
 5. search for users
 6. Add user to room / join room
 7. change casing of css to kebob-case - pass
@@ -23,6 +23,7 @@ experiment to test out react with socket.io and regular http connections.
 15. push notification when you're not on app - really want to learn
 16. keep track of unread messages of each room- would require a join table
     1.  still want to do it though
+17.[ ](https://github.com/fkhadra/react-on-screen) to get older messages
 
 ## Refactor Data Structure
 
