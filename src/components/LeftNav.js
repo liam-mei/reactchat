@@ -21,13 +21,14 @@ export default function LeftNav(props) {
         <Navbar.Brand className="d-flex mr-auto">
           <img
             alt="logo"
-            className="logo d-none d-md-block"
+            className="icon d-none d-md-block"
             src={darkFavicon}
           />
           <div className="m-2 pl-3 d-none d-lg-block">Chats</div>
         </Navbar.Brand>
+        <i className="fas fa-plus-circle icon" onClick={()=> history.push('/rooms/new')}></i>
         <NavDropdown
-          title={<i className="fas fa-cog fa-2x"></i>}
+          title={<i className="fas fa-cog fa-2x icon"></i>}
           id="basic-nav-dropdown"
         >
           <NavDropdown.Item>Settings</NavDropdown.Item>

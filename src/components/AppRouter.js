@@ -1,8 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
-import Register from "./Register";
 import Chat from "./Chat";
+import Register from "./Register";
+import AddRoom from './AddRoom'
 import ProtectedRoute from "../utils/ProtectedRoute";
 
 export default function AppRouter(props) {
