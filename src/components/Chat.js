@@ -5,6 +5,7 @@ import { SocketContext } from "../contexts/SocketContext";
 import LeftNav from "./LeftNav";
 import Rooms from "./Rooms";
 import Room from "./Room";
+import AddRoom from "./AddRoom";
 
 export default function Chat(props) {
   const username = localStorage.getItem("username");
@@ -82,10 +83,15 @@ export default function Chat(props) {
       <Route path="/rooms">
         <div className="left d-flex flex-column">
           <LeftNav socket={socket} />
-          <Rooms rooms={rooms} username={username} />
+          <Rooms rooms={rooms} username={username} socket={socket} />
         </div>
       </Route>
-      <Route path="/rooms/:roomId">
+
+      <Route path="/rooms/new">
+        <AddRoom socket={socket} />
+      </Route>
+
+      <Route path="/rooms/t/:roomId">
         <Room socket={socket} rooms={rooms} sendMessage={sendMessage} />
       </Route>
     </div>
